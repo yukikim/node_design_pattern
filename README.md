@@ -61,3 +61,5 @@ callback_patt03.js
 ### 解決策
 fs.readFile()の代わりにfs.readFileSync()を使う  
 callback_sync.js(コールバックを使わなくてもよい)
+
+**しかし同期関数は他のリクエストに処理待ちを強いるため全体の動作が遅くなる**
