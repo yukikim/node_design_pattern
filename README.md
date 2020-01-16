@@ -47,3 +47,12 @@
     before
     after
     Result: 3
+
+### 同期と非同期の混在
+callback_patt03.js
+
+上記コードではreader2生成時はキャッシュが存在しているので同期的に即実行されるが  
+その後で非同期処理にてonDataReadyに登録しているのでlistener関数は呼び出されない。  
+結果は
+
+    First call data: some data
