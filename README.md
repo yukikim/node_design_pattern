@@ -29,3 +29,21 @@
     before
     Result: 3
     after
+
+### 非同期CPS(継続渡し)関数
+
+    "use strict";
+
+    function additionAsync(a, b, callback) {
+      setTimeout(() => callback(a + b), 100);
+    }
+
+    console.log('before');
+    additionAsync(1, 2, result => console.log('Result: ' + result));
+    console.log('after');
+
+コールバック関数のsetTimeout()を待たずにコンソールを処理する(ノンブロッキング)ので結果は
+
+    before
+    after
+    Result: 3
