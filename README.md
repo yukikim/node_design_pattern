@@ -58,8 +58,51 @@ callback_patt03.js
     First call data: some data
 
 **上記の様な関数は結果を予測できないのでバグの原因かつバグを特定出来ない**
-### 解決策
+#### 解決策
 fs.readFile()の代わりにfs.readFileSync()を使う  
 callback_sync.js(コールバックを使わなくてもよい)
 
 **しかし同期関数は他のリクエストに処理待ちを強いるため全体の動作が遅くなる**
+
+入力したデータをキャッシュする場合は次回処理が早いので同期関数(DS)であっても  
+パフォーマンスに影響は少ないのでその様な場合は同期処理でもよい。  
+たとえば、初期値を読み込むなど・・・使い所によってはDSのほうがわかり易いプログラムになりえる。
+
+#### 強制的に非同期処理
+process.nextTick()を使ってどのような条件下でも非同期にする  
+callback_deferred_execution.js
+
+### 非同期CPSでのエラー伝播
+
+    const fs = require('fs');
+    function readJSON(filename, callback) {
+      fs.readFile(filename, 'utf8', (err, data) => {
+        let parsed;
+        if(err)
+        //propagate the error and exit the current function
+          return callback(err);
+
+        try {
+          //parse the file contents
+          parsed = JSON.parse(data);
+        } catch(err) {
+          //catch parsing errors
+          return callback(err);
+        }
+        //no errors, propagate just the data
+        callback(null, parsed);
+      });
+    }
+
+    let cb = (err, data) => {
+      if (err) {
+        return console.error(err);
+      }
+
+      console.log(data)
+    };
+
+    readJSON('valid_json.json', cb); // dumps the content
+    readJSON('invalid_json.json', cb); // prints error (SyntaxError)
+
+成功時のコールバックでは先頭の引数にnullを渡し、失敗時の引数はエラーオブジェクトだけ渡し、returnで関数を抜ける
