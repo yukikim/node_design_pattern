@@ -140,3 +140,5 @@ callback_deferred_execution.js
 
 ### コンストラクタのエクスポート
 /module_loader/logger_class_main.js
+
+## コールバック非同期パターン
