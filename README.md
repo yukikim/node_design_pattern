@@ -124,3 +124,16 @@ callback_deferred_execution.js
     logger.verbose('詳細情報メッセージ);
 
 ### 関数エクスポート(substackパターン)
+
+    //モジュール(logger2.js)
+    module.exports = (message) => {
+        console.log(`概要 : ${message}`);
+    }
+    module.exports.verbose = (message) => {
+        console.log(`詳細 : ${message}`);
+    }
+
+    //モジュール呼び出し(main.js)
+    const logger = require('./logger2');
+    logger('一般情報メッセージ);
+    logger.verbose('詳細情報メッセージ);
