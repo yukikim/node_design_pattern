@@ -56,3 +56,8 @@ callback_patt03.js
 結果は
 
     First call data: some data
+
+**上記の様な関数は結果を予測できないのでバグの原因かつバグを特定出来ない**
+### 解決策
+fs.readFile()の代わりにfs.readFileSync()を使う  
+callback_sync.js(コールバックを使わなくてもよい)
