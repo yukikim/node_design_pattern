@@ -106,3 +106,21 @@ callback_deferred_execution.js
     readJSON('invalid_json.json', cb); // prints error (SyntaxError)
 
 成功時のコールバックでは先頭の引数にnullを渡し、失敗時の引数はエラーオブジェクトだけ渡し、returnで関数を抜ける
+
+## モジュールシステム
+### 一般的な公開モジュールパターン
+
+    //モジュール(logger.js)
+    exports.info = (message) => {
+        console.log('概要' + message);
+    };
+    exports.verbose = (message) => {
+        console.log('詳細' + message);
+    };
+
+    //モジュール呼び出し(main.js)
+    const logger = require('./logger');
+    logger.info('一般情報メッセージ);
+    logger.verbose('詳細情報メッセージ);
+
+### 関数エクスポート(substackパターン)
