@@ -1,3 +1,8 @@
+/**
+ * このコードは所謂コールバック地獄の例です
+ * @type {request}
+ */
+
 const request = require('request')
 const fs = require('fs')
 const mkdirp = require('mkdirp')
