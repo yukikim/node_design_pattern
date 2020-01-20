@@ -165,7 +165,6 @@ index.js
 - 複数の関数に分割する
 
 基本原則を適用してindex.jsを修正する  
-**index2.js**
 
     if(err) {
         callback(err)
@@ -181,5 +180,8 @@ index.js
     //todo:エラーが無かったときの処理
 
 上記に修正することでネストが一段浅くなる
+
+#### 上記index.jsを複数の関数に分割する
+**index2.js**
 
 
