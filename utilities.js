@@ -3,7 +3,11 @@
 const urlParse = require('url').parse;
 const slug = require('slug');
 const path = require('path');
-
+/**
+ * urlをhttp://等を削除して文字列として取り出す
+ * @param url
+ * @returns {string}
+ */
 module.exports.urlToFilename = function urlToFilename(url) {
   const parsedUrl = urlParse(url);
   const urlPath = parsedUrl.path.split('/')
