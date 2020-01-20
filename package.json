@@ -9,6 +9,9 @@
   "author": "tk",
   "license": "ISC",
   "dependencies": {
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "mkdirp": "^0.5.1",
+    "request": "^2.88.0",
+    "slug": "^2.1.0"
   }
 }
