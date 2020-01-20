@@ -158,6 +158,7 @@ URL等の文字列をサニタイズする
 #### アプリケーションファイル
 index.js  
 このコードは**コールバック地獄**と呼ばれています。
+### コールバック地獄
 
     const request = require('request')
     const fs = require('fs')
