@@ -156,7 +156,8 @@ URL等の文字列をサニタイズする
 ### 独自モジュール追加
 **utilities.js**
 #### アプリケーションファイル
-index.js
+index.js  
+このコードは**コールバック地獄**と呼ばれています。
 
     const request = require('request')
     const fs = require('fs')
