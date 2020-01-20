@@ -158,53 +158,28 @@ URL等の文字列をサニタイズする
 #### アプリケーションファイル
 index.js  
 このコードは**コールバック地獄**と呼ばれています。
-### コールバック地獄
+### コールバック地獄の回避
+- クロージャを乱用しない
+- if文にelseを書かずにreturnで(またはcontinue,breakで)なるべく早く抜ける
+- コールバックをインラインではなく関数として定義し、必要なデータを引数として渡してクロージャを使わない
+- 複数の関数に分割する
 
-    const request = require('request')
-    const fs = require('fs')
-    const mkdirp = require('mkdirp')
-    const path = require('path')
-    const utilitise = require('./utilities')
+基本原則を適用してindex.jsを修正する  
+**index2.js**
 
-    function spider(url, callback) {
-        const filename = utilitise.urlToFilename(url)
-        fs.exists(filename, exists => { //todo:すでにダウンロード済かチェックする
-            if(!exists) { //todo:まだダウンロードしていなかったら
-                console.log('Downloading ' + url)
-                request(url, (err, response, body) => { //todo:ダウンロードする
-                    if(err) {
-                        callback(err)
-                    }else {
-                        mkdirp(path.dirname(filename), err => { //todo:ファイル保存のためのディレクトリを作成する
-                            if(err) {
-                                callback(err)
-                            }else {
-                                fs.writeFile(filename, body, err => { //todo:urlをファイルに保存する
-                                    if(err) {
-                                        callback(err)
-                                    }else {
-                                        callback(null, filename, true)
-                                    }
-                                })
-                            }
-                        })
-                    }
-                })
-            }else {
-                callback(null, filename, false)
-            }
-        })
+    if(err) {
+        callback(err)
+    }else {
+        //todo:エラーが無かったときの処理
     }
 
-    const url = 'https://github.com/yukikim/node_design_pattern'
+上記コードを次のように修正する
 
-    spider(url, (err, filename, downloaded) => {
-        if(err) {
-            console.log(err)
-        }else if(downloaded) {
-            console.log(`Completed the download of "${filename}"`)
+    if(err) {
+        return callback(err)
+    }
+    //todo:エラーが無かったときの処理
 
-        }else {
-            console.log(`"${filename}" was already downloaded`)
-        }
-    })
+上記に修正することでネストが一段浅くなる
+
+
