@@ -1,8 +1,11 @@
 "use strict";
 
 const urlParse = require('url').parse;
+const urlResolve = require('url').resolve;
 const slug = require('slug');
 const path = require('path');
+const cheerio = require('cheerio');
+
 /**
  * urlをhttp://等を削除して文字列として取り出す
  * @param url
