@@ -184,4 +184,13 @@ URL等の文字列をサニタイズする
 #### 上記index.jsを複数の関数に分割する
 **[index2.js](https://github.com/yukikim/node_design_pattern/blob/master/index2.js)**
 
+## 非同期パターン(asyncライブラリ)
+### 逐次処理
+asyncライブラリのインストール
+
+    $ npm install async
+
+asyncライブラリを使った実装例  
+**[async_index.js](https://github.com/yukikim/node_design_pattern/blob/master/async_index.js)**
+
 
