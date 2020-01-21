@@ -60,7 +60,8 @@ function download(url, filename, callback) {
   let body;
 
   async.series([
-    callback => {                              // ❶ ★外側のcallback隠蔽している
+      //todo:urlダウンロードしてレスは変数bodyに入れる
+    callback => {                              // todo:外側のcallback隠蔽している
       request(url, (err, response, resBody) => {
         if(err) {
           return callback(err);
@@ -70,12 +71,14 @@ function download(url, filename, callback) {
       });
     },
 
-    mkdirp.bind(null, path.dirname(filename)), // ❷
+      //todo:ファイルを保存するディレクトリを作成する
+    mkdirp.bind(null, path.dirname(filename)),
 
-    callback => {                              // ❸ ★外側のcallback隠蔽している
+      //todo:先のタスクで取得したbodyをファイルに書き込む
+    callback => {                              // todo:外側のcallback隠蔽している
       fs.writeFile(filename, body, callback);
     }
-  ], err => {                                  // ❹
+  ], err => { //todo:上記全てのタスクが終了したら呼出される関数
     if(err) {
       return callback(err);
     }
