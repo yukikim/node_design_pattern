@@ -154,9 +154,9 @@ HTTPリクエストを簡単に記述するためのライブラリ
 URL等の文字列をサニタイズする
 
 ### 独自モジュール追加
-**utilities.js**
+**[utilities.js](blob/master/utilities.js)**
 #### アプリケーションファイル
-index.js  
+[index.js](blob/master/index.js)  
 このコードは**コールバック地獄**と呼ばれています。
 ### コールバック地獄の回避
 - クロージャを乱用しない
@@ -182,6 +182,6 @@ index.js
 上記に修正することでネストが一段浅くなる
 
 #### 上記index.jsを複数の関数に分割する
-**index2.js**
+**[index2.js](blob/master/index2.js)**
 
 
