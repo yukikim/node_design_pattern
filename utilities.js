@@ -24,3 +24,24 @@ module.exports.urlToFilename = function urlToFilename(url) {
   }
   return filename;
 };
+
+module.exports.getLinkUrl = function getLinkUrl(currentUrl, element) {
+  const link = urlResolve(currentUrl, element.attribs.href || "");
+  const parsedLink = urlParse(link);
+  const currentParsedUrl = urlParse(currentUrl);
+  if(parsedLink.hostname !== currentParsedUrl.hostname
+    || !parsedLink.pathname) {
+    return null;
+  }
+  return link;
+};
+
+module.exports.getPageLinks = function getPageLinks(currentUrl, body) {
+  return [].slice.call(cheerio.load(body)('a'))
+    .map(function(element) {
+      return module.exports.getLinkUrl(currentUrl, element);
+    })
+    .filter(function(element) {
+      return !!element;
+    });
+};
