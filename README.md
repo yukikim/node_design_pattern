@@ -190,7 +190,20 @@ asyncライブラリのインストール
 
     $ npm install async
 
-asyncライブラリを使った実装例  
+asyncライブラリの**async.series()**を使った実装例  
 **[async_index.js](https://github.com/yukikim/node_design_pattern/blob/master/async_index.js)**
+
+#### 配列を走査して非同期処理をする
+asyncライブラリーの**async.eachSeries()**を使う  
+**[async_index2.js](https://github.com/yukikim/node_design_pattern/blob/master/async_index2.js)**
+
+#### asyncライブラリで非同期を並列処理する
+asyncライブラリーの**async.each()**を使う  
+**[async_index3.js](https://github.com/yukikim/node_design_pattern/blob/master/async_index3.js)**
+
+#### asyncライブラリで同時実行数を制限した並列処理パターン
+asyncライブラリーの**async.queue()**を使う  
+**[async_index4.js](https://github.com/yukikim/node_design_pattern/blob/master/async_index4.js)**
+
 
 
