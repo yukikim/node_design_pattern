@@ -71,7 +71,7 @@ function download(url, filename, callback) {
       });
     },
 
-      //todo:ファイルを保存するディレクトリを作成する
+      //todo:ファイルを保存するディレクトリを作成する関数をbind()で生成
     mkdirp.bind(null, path.dirname(filename)),
 
       //todo:先のタスクで取得したbodyをファイルに書き込む
