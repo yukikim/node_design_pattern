@@ -205,5 +205,75 @@ asyncライブラリーの**async.each()**を使う
 asyncライブラリーの**async.queue()**を使う  
 **[async_index4.js](https://github.com/yukikim/node_design_pattern/blob/master/async_index4.js)**
 
+## ES2015以降の非同期パターン
+### プロミス
+プロミスは非同期処理の結果を表現するオブジェクト
+
+非同期処理を呼び出すとPromiseのインスタンスが戻される  
+処理結果を受け取るには
+
+    promise
+        .then(
+            [非同期処理が成功したとき処理結果xとともにresolveされる],
+            [失敗したときその理由yとともにrejectされる]
+        )
+
+#### 処理結果を受け取る側のコールバックとの比較
+**コールバック**
+
+    asyncOperation(arg, (err, result) => {
+        if(err) {
+            //エラー処理
+            return
+        }
+        //結果を参照して処理を行う
+    })
+ 
+ **プロミス**
+ 
+     asyncOperation(arg)
+         .then(result => {
+             //結果を参照して処理する
+         },
+         err => {
+             //エラー処理
+         })
+
+#### プロミスチェーン
+then()は別のプロミスオブジェクトを返すので、複数のプロミスを連続して呼び出すことができる
+
+    asyncOperation(arg)
+        .then(result => {
+            //プロミスを戻す
+            return asyncOperation(arg2)
+        })
+        .then(result2 => {
+            //値を戻す
+            return 'done'
+        })
+        .then(undefined, err => {
+            //チェーン内にエラーがあったらキャッチする
+        })
+
+**プロミスの最も優れている点は非同期処理で例外を扱えることです**
+
+#### プロミスコンストラクタ
+オブジェクトの生成  
+new Promise(function(resolve, reject){})
+
+resolveされるかrejectされるかは、引数として渡される関数により決定する
+
+- resolve(obj)  
+この関数はプロミスをresolveするために使われる。  
+引数objに渡された値とともにプロミスがresolveされる。  
+引数objにthenableが渡された場合、それが解決された時点でプロミスがresolveされる。
+
+- reject(err)  
+この関数はプロミスをrejectするために使われる。  
+引数errに渡された理由とともにプロミスがrejectされる。  
+引数errは通常はエラーオブジェクト。
+
+
+
 
 
