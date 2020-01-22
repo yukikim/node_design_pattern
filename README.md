@@ -276,6 +276,8 @@ resolveされるかrejectされるかは、引数として渡される関数に�
 #### プロミスとコールバック両方をサポートするバターン
 **[callbackAndPromise](https://github.com/yukikim/node_design_pattern/tree/master/callbackAndPromise)**
 
-
+### async/await(非同期処理パターンの真打)
+async/awaitでの処理例  
+**[async_await/index.js](https://github.com/yukikim/node_design_pattern/tree/master/async_await/index.js)**
 
 
