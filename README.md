@@ -273,6 +273,8 @@ resolveされるかrejectされるかは、引数として渡される関数に�
 引数errに渡された理由とともにプロミスがrejectされる。  
 引数errは通常はエラーオブジェクト。
 
+#### プロミスとコールバック両方をサポートするバターン
+**[callbackAndPromise/test.js](https://github.com/yukikim/node_design_pattern/blob/master/callbackAndPromise/test.js)**
 
 
 
